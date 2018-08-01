@@ -1,0 +1,27 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 01-08-2018
+ *
+ * SASS del lugar que se renderizará con sus datos de clima
+ *
+ */
+
+.place {
+
+  margin
+
+  figure {
+
+    figcaption {
+      font-size   : 2rem;
+    }
+
+  }
+
+  h3 {
+    font-size : 2rem;
+    margin    : 0; 
+  }
+
+}
