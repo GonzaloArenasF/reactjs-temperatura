@@ -23,10 +23,9 @@ class Place extends Component {
       abreviado   : this.props.abreviado,
       nombre      : this.props.nombre,
       estado      : this.props.estado,
-      temperatura : this.props.temperatura
+      temperatura : this.props.temperatura,
+      icon        : this.props.icon
     };
-
-    
 
   }
  
@@ -36,15 +35,10 @@ class Place extends Component {
   render() {
     return ( 
 
-      <article className="place col-4">
-        <figure>
-          <img src="" alt={ this.state.estado } />
-          <figcaption>{ this.state.estado }</figcaption>
-        </figure>
-        <h3>
-          { this.state.nombre }
-          <small>{ this.state.abreviado }</small>
-        </h3>
+      <article className="place col-12 col-md-4">
+        <div className={ this.state.icon }></div>
+        <h3>{ this.state.nombre }</h3>
+        <span>{ this.state.estado }</span>
         <p>{ this.state.temperatura }</p>
       </article>
 

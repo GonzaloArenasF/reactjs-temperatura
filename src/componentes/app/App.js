@@ -20,7 +20,7 @@ class App extends Component {
   constructor () {
     super();
 
-    this.state    = {
+    this.state = {
       places: [] 
     }
 
@@ -58,18 +58,31 @@ class App extends Component {
     return (
 
       <div className="App container-fluid">
-        <header className="App-header col-12">
-          <img src={ logo } className="App-logo" alt="logo" />
-          <h1 className="App-title">React Temperatura</h1>
+
+        <header className="App-header row">
+          <div className="col-12">
+            <img src={ logo } className="App-logo" alt="logo" />
+            <h1>React Temperatura</h1>
+          </div>
         </header>
-        { this.state.places.map ( place => {
-          return <Place
-                    nombre      = { place.nombre }
-                    abreviado   = { place.abreviado }
-                    temperatura = { place.clima.temperatura }
-                    estado      = { place.clima.estado }
-                  />
-        } ) }
+
+        <section className="row">
+          <div className="col-12">
+            <p>
+              Este es el estado del clima en las principales ciudades del planeta
+            </p>
+          </div>
+          { this.state.places.map ( place => {
+            return <Place
+                      nombre      = { place.nombre }
+                      abreviado   = { place.abreviado }
+                      temperatura = { place.clima.temperatura }
+                      estado      = { place.clima.estado }
+                      icon        = { place.clima.icon }
+                    />
+          } ) }
+        </section>
+
       </div>
 
     );

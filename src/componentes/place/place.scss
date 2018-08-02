@@ -7,21 +7,46 @@
  *
  */
 
+ @import '../../styles/_variables.scss';
+
 .place {
 
-  margin
+  div {
+   
+    border            : 1px solid $color-main;
+    height            : 60px;
+    margin            : 0 auto;
+    width             : 60px;
 
-  figure {
-
-    figcaption {
-      font-size   : 2rem;
+    &::after {
+      content   : '\f185';
+      font-size : 2rem;
     }
 
+    .clear-day {} 
+    .clear-night {}
+    .rain {} 
+    .snow {}
+    .sleet {}
+    .wind {}
+    .fog {}
+    .cloudy {}
+    .partly-cloudy-day {}
+    .partly-cloudy-night {}
+    .hail {}
+    .thunderstorm {} 
+    .tornado {}
+    
   }
 
   h3 {
     font-size : 2rem;
-    margin    : 0; 
+    margin    : .5rem; 
   }
 
 }
+
+/*
+  Clases para íconos de clima contenidos
+  en una archivo sprite
+*/
