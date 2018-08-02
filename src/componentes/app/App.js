@@ -8,6 +8,8 @@
  */
 
 import React, { Component } from 'react';
+import socketIOClient from 'socket.io-client';
+
 import logo from '../../assets/logo.svg';
 import Place from '../place/place';
 import './App.scss';
@@ -20,25 +22,44 @@ class App extends Component {
   constructor () {
     super();
 
+    this.socket = socketIOClient('http://localhost:3000', { forceNew: true });
+
     this.state = {
-      places: [] 
+      places: []
     }
 
   }
 
   /**
-   * Ejecuciones al cargar el componente
+   * Ejecuciones al iniciar la carga el componente
    */
   componentWillMount () {
-
-    this.getPlaces();
     
+    this.getPlacesFromRest();
+
+    console.info('Socket Connected');
+    this.socket.on('placeResCl', (place) => { console.log(place); });
+    this.socket.on('placeResCh', (place) => { console.log(place); });
+    this.socket.on('placeResNz', (place) => { console.log(place); });
+    this.socket.on('placeResAu', (place) => { console.log(place); });
+    this.socket.on('placeResUk', (place) => { console.log(place); });
+    this.socket.on('placeResUsa', (place) => { console.log(place); });
+
+  }
+
+   /**
+   * Ejecuciones al terminar la cargar el componente
+   */
+  componentDidMount () {
+    
+    this.getPlacesFromSocket();
+
   }
 
   /**
-   * Rescate de los lugares desde el servicio
+   * Rescate de los lugares desde el servicio REST
    */
-  getPlaces = () => {
+  getPlacesFromRest = () => {
 
     let servicio = 'http://localhost:3000/temperatura';
     fetch(servicio)
@@ -49,6 +70,22 @@ class App extends Component {
       this.setState({ places: places.detalle })
     })
 
+  }
+
+
+  /**
+   * Rescate de lugares desde Socket
+   */
+  getPlacesFromSocket = () => {
+
+    console.info('Socket Emit');
+    this.socket.emit('placeReq', { place: 'cl' });
+    this.socket.emit('placeReq', { place: 'ch' });
+    this.socket.emit('placeReq', { place: 'nz' });
+    this.socket.emit('placeReq', { place: 'au' });
+    this.socket.emit('placeReq', { place: 'uk' });
+    this.socket.emit('placeReq', { place: 'usa' });
+    
   }
  
   /**
@@ -72,8 +109,9 @@ class App extends Component {
               Este es el estado del clima en las principales ciudades del planeta
             </p>
           </div>
-          { this.state.places.map ( place => {
+          { this.state.places.map ( (place) => {
             return <Place
+                      key         = { 'place_' + place.abreviado }
                       nombre      = { place.nombre }
                       abreviado   = { place.abreviado }
                       temperatura = { place.clima.temperatura }
