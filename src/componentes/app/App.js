@@ -15,8 +15,9 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
 
-import Place from '../place/place';
 import Header from '../header/header';
+import Footer from '../footer/footer';
+import Place from '../place/place';
 import './App.scss';
 
 class App extends Component {
@@ -75,9 +76,9 @@ class App extends Component {
     // Llamada al servicio cada 10 segundos
     setInterval( () => {
 
+      this.setState({ progreso: { width : 80} });
       this.setState({ actualizando : true });
       this.setState({ error: false });
-      this.setState({ progreso: { width : 50} });
 
       fetch(servicio)
       .then((response) => {
@@ -155,6 +156,12 @@ class App extends Component {
                     />
           } ) }
         </section>
+
+        <div className="row">
+          <div className="col-12">&nbsp;</div>
+        </div>
+
+        <Footer />
 
       </div>
 

@@ -4,3 +4,9 @@
 @import "./fontawesome/scss/brands.scss";
 @import "./fontawesome/scss/regular.scss";
 @import "./fontawesome/scss/solid.scss";
+@import "./_variables.scss";
+
+
+a, a:visited {
+  color:  $color-reactjs;
+}
