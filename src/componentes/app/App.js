@@ -128,38 +128,48 @@ class App extends Component {
   render() {
     return (
 
-      <div className="App container-fluid">
+      <div className="App">
 
         <Header />
 
-        <section className="row">
-          <div className="col-12 progreso">
-          <div className="progress text-center">
-            <div className="progress-bar" role="progressbar" style={ this.state.progreso } aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-            <span className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando datos' : '' }</span>
-            <span className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </span>
+        <div className="container-fluid">
+          <div className="row">
+            <div className="col-12 progreso">
+              <div className="progress text-center">
+                <div className="progress-bar" role="progressbar" style={ this.state.progreso } aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                <span className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando datos' : '' }</span>
+                <span className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </span>
+              </div>
+            </div>
           </div>
-          </div>
-          <div className="col-12">
-            <p>
-              Este es el estado del clima en las principales ciudades del planeta
-            </p>
-          </div>
-          { this.state.places.map ( (place) => {
-            return <Place
-                      key         = { 'place_' + place.abreviado }
-                      nombre      = { place.nombre }
-                      abreviado   = { place.abreviado }
-                      temperatura = { place.clima.temperatura }
-                      estado      = { place.clima.estado }
-                      icon        = { place.clima.icon }
-                    />
-          } ) }
-        </section>
-
-        <div className="row">
-          <div className="col-12">&nbsp;</div>
         </div>
+
+        <div className="container">
+          <section className="row">
+            <div className="col-12">
+              <p>
+                Este es el estado del clima en las principales ciudades del planeta
+              </p>
+            </div>
+            { this.state.places.map ( (place) => {
+              return <Place
+                        key         = { 'place_' + place.abreviado }
+                        nombre      = { place.nombre }
+                        abreviado   = { place.abreviado }
+                        temperatura = { place.clima.temperatura }
+                        estado      = { place.clima.estado }
+                        icon        = { place.clima.icon }
+                      />
+            } ) }
+          </section>
+
+          <div className="row">
+            <div className="col-12">&nbsp;</div>
+          </div>
+
+        </div>
+
+        
 
         <Footer />
 

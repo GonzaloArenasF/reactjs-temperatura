@@ -32,10 +32,12 @@ class Header extends Component {
 
     return ( 
 
-      <header className="row">
-        <div className="col-12">
-          <img src={ logo } className='App-logo activo' alt="logo" />
-          <h1>React Temperatura</h1>
+      <header className="container-fluid">
+        <div className="row">
+          <div className="col-12">
+            <img src={ logo } className='App-logo activo' alt="logo" />
+            <h1>React Temperatura</h1>
+          </div>
         </div>
       </header>
 
