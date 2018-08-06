@@ -1,0 +1,52 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 01-08-2018
+ *
+ * SASS del lugar que se renderizará con sus datos de clima
+ *
+ */
+
+ @import '../../styles/_variables.scss';
+
+.place {
+
+  div {
+   
+    border            : 1px solid $color-main;
+    height            : 60px;
+    margin            : 0 auto;
+    width             : 60px;
+
+    &::after {
+      content   : '\f185';
+      font-size : 2rem;
+    }
+
+    .clear-day {} 
+    .clear-night {}
+    .rain {} 
+    .snow {}
+    .sleet {}
+    .wind {}
+    .fog {}
+    .cloudy {}
+    .partly-cloudy-day {}
+    .partly-cloudy-night {}
+    .hail {}
+    .thunderstorm {} 
+    .tornado {}
+    
+  }
+
+  h3 {
+    font-size : 2rem;
+    margin    : .5rem; 
+  }
+
+}
+
+/*
+  Clases para íconos de clima contenidos
+  en una archivo sprite
+*/

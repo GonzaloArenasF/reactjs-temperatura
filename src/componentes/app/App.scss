@@ -1,0 +1,32 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 31-07-2018
+ *
+ * SASS principal
+ *
+ */
+ @import '../../styles/_variables.scss';
+
+.App {
+
+  text-align: center;
+
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+    height: 80px;
+  }
+  
+  .App-header {
+    background-color: $color-main;
+    height: 150px;
+    padding: 20px;
+    color: lighten($color-main, 100%);
+  }
+  
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+}
