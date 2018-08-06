@@ -33,7 +33,7 @@ class App extends Component {
     this.state = {
       places        : [],
       actualizando  : true,
-      progreso      : { width : 0 },
+      progreso      : { width : '10%' },
       error         : null,
       errorMsg      : null
     }
@@ -76,28 +76,31 @@ class App extends Component {
     // Llamada al servicio cada 10 segundos
     setInterval( () => {
 
-      this.setState({ progreso: { width : 80} });
+      this.setState({ progreso: { width : '50%'} });
       this.setState({ actualizando : true });
       this.setState({ error: false });
 
       fetch(servicio)
       .then((response) => {
 
-        this.setState({ progreso: { width : 100} });
+        this.setState({ progreso: { width : '100%'} });
         return response.json();
 
       })
       .then((places) => {
 
         this.setState({ actualizando : false });
-        this.setState({ progreso: { width : 0} });
 
-        if (places.estado === true) {
-          this.setState({ places: places.detalle });
-        } else {
-          this.setState({ error: true });
-          this.setState({ errorMsg: places.mensaje + '. Reintentando...' });
-        }
+        setTimeout(() => {
+          if (places.estado === true) {
+            this.setState({ places: places.detalle });
+          } else {
+            this.setState({ error: true });
+            this.setState({ errorMsg: places.mensaje + '. Reintentando...' });
+          }
+  
+          this.setState({ progreso: { width : '0%'} });
+        }, 2000);
 
       })
 
@@ -137,8 +140,7 @@ class App extends Component {
             <div className="col-12 progreso">
               <div className="progress text-center">
                 <div className="progress-bar" role="progressbar" style={ this.state.progreso } aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                <span className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando datos' : '' }</span>
-                <span className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </span>
+                <small className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </small>
               </div>
             </div>
           </div>

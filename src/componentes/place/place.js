@@ -35,17 +35,19 @@ class Place extends Component {
   render() {
     return ( 
 
-      <article className="card place col-6 col-md-3">
-        <div className={ this.state.icon }></div>
-        <section className="card-body">
-          <h5 className="card-title">{ this.state.nombre }</h5>
-          <span>{ this.state.estado }</span>
-          <p className="card-text">
-            { this.state.temperatura }
-            <sup>o</sup>
-          </p>
-        </section>
-      </article>
+      <div className="col-6 col-md-3">
+        <article className="card place">
+          <div className={ this.state.icon }></div>
+          <section className="card-body">
+            <h5 className="card-title">{ this.state.nombre }</h5>
+            <span>{ this.state.estado }</span>
+            <p className="card-text">
+              { this.state.temperatura }
+              <sup>o</sup>
+            </p>
+          </section>
+        </article>
+      </div>
 
     );
   }

@@ -25,7 +25,8 @@
       background-color: lighten($color-reactjs, 100%);
 
       .progress-bar {
-        background-color: $color-reactjs;
+        background-color  : $color-reactjs;
+        height            : .5rem;
       }
 
     }
