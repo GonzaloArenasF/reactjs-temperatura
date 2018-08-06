@@ -17,6 +17,11 @@
     height: 80px;
   }
   
+  @keyframes App-logo-spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+  
   .App-header {
     background-color: $color-main;
     height: 150px;
@@ -24,9 +29,9 @@
     color: lighten($color-main, 100%);
   }
   
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
+  .mensajes {
+    position  : absolute;
+    top       : 0;
   }
 
 }

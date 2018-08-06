@@ -1,9 +1,14 @@
 /**
  * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
- * @version 0.0.1
+ * @version 0.0.2
  * @since 31-0-2018
  *
  * JS del componente principal
+ * 
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.2
+ * @since 06-08-2018
+ * - Recuperación de datos cada 10 segundos
  *
  */
 
@@ -25,7 +30,10 @@ class App extends Component {
     this.socket = socketIOClient('http://localhost:3000', { forceNew: true });
 
     this.state = {
-      places: []
+      places        : [],
+      actualizando  : false,
+      error         : null,
+      errorMsg      : null
     }
 
   }
@@ -62,13 +70,32 @@ class App extends Component {
   getPlacesFromRest = () => {
 
     let servicio = 'http://localhost:3000/temperatura';
-    fetch(servicio)
-	  .then((response) => {
-    	return response.json();
-    })
-    .then((places) => {
-      this.setState({ places: places.detalle })
-    })
+    
+    // Llamada al servicio cada 10 segundos
+    setInterval( () => {
+
+      this.setState({ actualizando : true });
+      this.setState({ error: false });
+
+      fetch(servicio)
+      .then((response) => {
+        return response.json();
+      })
+      .then((places) => {
+
+        this.setState({ actualizando : false });
+
+        if (places.estado === true) {
+          this.setState({ places: places.detalle });
+        } else {
+          this.setState({ error: true });
+          this.setState({ errorMsg: places.mensaje + '. Volveremos a reintentar' });
+        }
+
+      })
+
+    }, 10000);
+
 
   }
 
@@ -108,6 +135,10 @@ class App extends Component {
             <p>
               Este es el estado del clima en las principales ciudades del planeta
             </p>
+          </div>
+          <div className="mensajes">
+            <small className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando información' : '' }</small>
+            <small className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </small>
           </div>
           { this.state.places.map ( (place) => {
             return <Place
