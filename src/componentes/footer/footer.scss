@@ -1,0 +1,17 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 06-08-2018
+ *
+ * SASS del header
+ *
+ */
+
+ @import '../../styles/_variables.scss';
+ 
+ footer {
+
+  background-color  : $color-main;
+  color             : lighten($color-main, 100%);
+  
+ }

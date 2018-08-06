@@ -15,8 +15,8 @@
 import React, { Component } from 'react';
 import socketIOClient from 'socket.io-client';
 
-import logo from '../../assets/logo.svg';
 import Place from '../place/place';
+import Header from '../header/header';
 import './App.scss';
 
 class App extends Component {
@@ -31,7 +31,8 @@ class App extends Component {
 
     this.state = {
       places        : [],
-      actualizando  : false,
+      actualizando  : true,
+      progreso      : { width : 0 },
       error         : null,
       errorMsg      : null
     }
@@ -76,20 +77,25 @@ class App extends Component {
 
       this.setState({ actualizando : true });
       this.setState({ error: false });
+      this.setState({ progreso: { width : 50} });
 
       fetch(servicio)
       .then((response) => {
+
+        this.setState({ progreso: { width : 100} });
         return response.json();
+
       })
       .then((places) => {
 
         this.setState({ actualizando : false });
+        this.setState({ progreso: { width : 0} });
 
         if (places.estado === true) {
           this.setState({ places: places.detalle });
         } else {
           this.setState({ error: true });
-          this.setState({ errorMsg: places.mensaje + '. Volveremos a reintentar' });
+          this.setState({ errorMsg: places.mensaje + '. Reintentando...' });
         }
 
       })
@@ -123,22 +129,20 @@ class App extends Component {
 
       <div className="App container-fluid">
 
-        <header className="App-header row">
-          <div className="col-12">
-            <img src={ logo } className="App-logo" alt="logo" />
-            <h1>React Temperatura</h1>
-          </div>
-        </header>
+        <Header />
 
         <section className="row">
+          <div className="col-12 progreso">
+          <div className="progress text-center">
+            <div className="progress-bar" role="progressbar" style={ this.state.progreso } aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+            <span className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando datos' : '' }</span>
+            <span className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </span>
+          </div>
+          </div>
           <div className="col-12">
             <p>
               Este es el estado del clima en las principales ciudades del planeta
             </p>
-          </div>
-          <div className="mensajes">
-            <small className="text-warning">{ (this.state.actualizando === true) ? 'Recuperando información' : '' }</small>
-            <small className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </small>
           </div>
           { this.state.places.map ( (place) => {
             return <Place

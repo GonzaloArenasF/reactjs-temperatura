@@ -13,29 +13,23 @@
 
   div {
    
-    border            : 1px solid $color-main;
-    height            : 60px;
+    height            : 80px;
     margin            : 0 auto;
-    width             : 60px;
+    width             : 80px;
+    background-image  : url('../../assets/sprite-weather.png');
 
-    &::after {
-      content   : '\f185';
-      font-size : 2rem;
-    }
-
-    .clear-day {} 
-    .clear-night {}
-    .rain {} 
-    .snow {}
-    .sleet {}
-    .wind {}
-    .fog {}
-    .cloudy {}
-    .partly-cloudy-day {}
-    .partly-cloudy-night {}
-    .hail {}
-    .thunderstorm {} 
-    .tornado {}
+    &.clear-day            { background-position: -252px -5px; } 
+    &.clear-night          { background-position: -495px -5px; }
+    &.rain                 { background-position: -729px -10px; } 
+    &.snow                 { background-position: -492px -141px; }
+    &.sleet                { background-position: -374px -406px; }
+    &.wind                 { background-position: -733px -393px; }
+    &.fog                  { background-position: -14px 5px; }
+    &.cloudy               { background-position: -617px 5px; }
+    &.partly-cloudy-day    { background-position: -857px 280px; }
+    &.partly-cloudy-night  { background-position: -19px 147px; }
+    &.hail                 { background-position: -12px 275px; }
+    &.thunderstorm         { background-position: -252px 405px; }
     
   }
 

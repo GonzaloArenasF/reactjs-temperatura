@@ -11,27 +11,25 @@
 .App {
 
   text-align: center;
-
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-    height: 80px;
-  }
-  
-  @keyframes App-logo-spin {
-    from { transform: rotate(0deg); }
-    to { transform: rotate(360deg); }
-  }
-  
-  .App-header {
-    background-color: $color-main;
-    height: 150px;
-    padding: 20px;
-    color: lighten($color-main, 100%);
-  }
   
   .mensajes {
-    position  : absolute;
-    top       : 0;
+    height: 20px;
+  }
+
+  .progreso {
+
+    padding: 0;
+
+    .progress {
+
+      background-color: lighten($color-reactjs, 100%);
+
+      .progress-bar {
+        background-color: $color-reactjs;
+      }
+
+    }
+    
   }
 
 }
