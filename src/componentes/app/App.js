@@ -82,7 +82,7 @@ class App extends Component {
 
       fetch(servicio)
       .then((response) => {
-
+        
         this.setState({ progreso: { width : '100%'} });
         return response.json();
 
@@ -93,6 +93,7 @@ class App extends Component {
 
         setTimeout(() => {
           if (places.estado === true) {
+            this.setState({ places: [] });
             this.setState({ places: places.detalle });
           } else {
             this.setState({ error: true });
@@ -137,11 +138,11 @@ class App extends Component {
 
         <div className="container-fluid">
           <div className="row">
-            <div className="col-12 progreso">
-              <div className="progress text-center">
+            <div className="col-12 progreso text-center">
+              <div className="progress">
                 <div className="progress-bar" role="progressbar" style={ this.state.progreso } aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
-                <small className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </small>
               </div>
+              <small className="text-danger">{ (this.state.error === true) ? this.state.errorMsg : '' } </small>
             </div>
           </div>
         </div>
@@ -153,7 +154,7 @@ class App extends Component {
                 Este es el estado del clima en las principales ciudades del planeta
               </p>
             </div>
-            { this.state.places.map ( (place) => {
+            { this.state.places.map ( (place, i) => {
               return <Place
                         key         = { 'place_' + place.abreviado }
                         nombre      = { place.nombre }
