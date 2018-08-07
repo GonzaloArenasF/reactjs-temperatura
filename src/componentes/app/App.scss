@@ -1,0 +1,36 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 31-07-2018
+ *
+ * SASS principal
+ *
+ */
+ @import '../../styles/_variables.scss';
+
+.App {
+
+  text-align: center;
+  
+  .mensajes {
+    height: 20px;
+  }
+
+  .progreso {
+
+    padding: 0;
+
+    .progress {
+
+      background-color: lighten($color-reactjs, 100%);
+
+      .progress-bar {
+        background-color  : $color-reactjs;
+        height            : .5rem;
+      }
+
+    }
+    
+  }
+
+}

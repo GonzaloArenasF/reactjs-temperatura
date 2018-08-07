@@ -1,0 +1,39 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 06-08-2018
+ *
+ * SASS del header
+ *
+ */
+
+ @import '../../styles/_variables.scss';
+
+ .App-logo {
+
+  height: 80px;
+
+  &.activo {
+    // animation: App-logo-spin infinite 20s linear;
+  }
+
+}
+
+@keyframes App-logo-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+header {
+  background-color  : $color-main;
+  padding-top       : 20px;
+  color             : lighten($color-main, 100%);
+}
+
+@media (max-width: $init-responsive) {
+  header {
+    h1 {
+      font-size: 1.5rem;
+    }
+  }
+}
