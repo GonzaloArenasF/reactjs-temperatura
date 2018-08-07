@@ -43,19 +43,7 @@ class App extends Component {
   /**
    * Ejecuciones al iniciar la carga el componente
    */
-  componentWillMount () {
-    
-    this.getPlacesFromRest();
-
-    console.info('Socket Connected');
-    this.socket.on('placeResCl', (place) => { console.log(place); });
-    this.socket.on('placeResCh', (place) => { console.log(place); });
-    this.socket.on('placeResNz', (place) => { console.log(place); });
-    this.socket.on('placeResAu', (place) => { console.log(place); });
-    this.socket.on('placeResUk', (place) => { console.log(place); });
-    this.socket.on('placeResUsa', (place) => { console.log(place); });
-
-  }
+  componentWillMount () { }
 
    /**
    * Ejecuciones al terminar la cargar el componente
@@ -63,6 +51,7 @@ class App extends Component {
   componentDidMount () {
     
     this.getPlacesFromSocket();
+    // this.getPlacesFromRest();
 
   }
 
@@ -116,13 +105,36 @@ class App extends Component {
    */
   getPlacesFromSocket = () => {
 
-    console.info('Socket Emit');
-    this.socket.emit('placeReq', { place: 'cl' });
-    this.socket.emit('placeReq', { place: 'ch' });
-    this.socket.emit('placeReq', { place: 'nz' });
-    this.socket.emit('placeReq', { place: 'au' });
-    this.socket.emit('placeReq', { place: 'uk' });
-    this.socket.emit('placeReq', { place: 'usa' });
+    // Llamada al servicio cada 10 segundos
+    setInterval( () => {
+
+      this.setState({ progreso: { width : '100%'} });
+      this.setState({ actualizando : true });
+      this.setState({ error: false });
+      this.socket.emit('placesReq');
+
+    }, 10000);
+
+    // Escucha
+    this.socket.on('placesRes', (places) => {
+
+      this.setState({ actualizando : false });
+
+      setTimeout(() => {
+
+        if (places.estado === true) {
+          this.setState({ places: [] });
+          this.setState({ places: places.detalle });
+        } else {
+          this.setState({ error: true });
+          this.setState({ errorMsg: places.mensaje + '. Reintentando...' });
+        }
+
+        this.setState({ progreso: { width : '0%'} });
+
+      }, 1000);
+      
+    });
     
   }
  
