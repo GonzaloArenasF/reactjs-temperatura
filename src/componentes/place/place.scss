@@ -1,0 +1,48 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 01-08-2018
+ *
+ * SASS del lugar que se renderizará con sus datos de clima
+ *
+ */
+
+ @import '../../styles/_variables.scss';
+
+.place {
+
+  margin-bottom: 1rem;
+
+  div {
+   
+    height            : 80px;
+    margin            : 0 auto;
+    width             : 80px;
+    background-image  : url('../../assets/sprite-weather.png');
+
+    &.clear-day            { background-position: -252px -5px; } 
+    &.clear-night          { background-position: -495px -5px; }
+    &.rain                 { background-position: -729px -10px; } 
+    &.snow                 { background-position: -492px -141px; }
+    &.sleet                { background-position: -374px -406px; }
+    &.wind                 { background-position: -733px -393px; }
+    &.fog                  { background-position: -14px 5px; }
+    &.cloudy               { background-position: -617px 5px; }
+    &.partly-cloudy-day    { background-position: -857px 280px; }
+    &.partly-cloudy-night  { background-position: -19px 147px; }
+    &.hail                 { background-position: -12px 275px; }
+    &.thunderstorm         { background-position: -252px 405px; }
+    
+  }
+
+  h3 {
+    font-size : 2rem;
+    margin    : .5rem; 
+  }
+
+}
+
+/*
+  Clases para íconos de clima contenidos
+  en una archivo sprite
+*/

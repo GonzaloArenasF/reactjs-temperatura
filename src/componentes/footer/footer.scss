@@ -1,0 +1,39 @@
+/**
+ * @author Gonzalo A. Arenas Flores <gonzalo.arenas.flores@gmail.com>
+ * @version 0.0.1
+ * @since 06-08-2018
+ *
+ * SASS del header
+ *
+ */
+
+ @import '../../styles/_variables.scss';
+ 
+ footer {
+
+  background-color  : $color-main;
+  color             : lighten($color-main, 40%);
+  font-size         : .8rem; 
+  padding           : 1rem; 
+  text-align        : left;
+
+  @media (min-width:  $init-responsive) {
+    div:nth-child(2) {
+      border-right: 1px dotted lighten($color-main, 40%);
+    }
+  }
+
+  h2 {
+    border-bottom : 1px dotted lighten($color-main, 40%);
+    font-size     : 1.5rem;
+    margin        : 1rem 0;
+    padding-bottom: 1rem;
+    text-align    : center;
+  }
+
+  hr {
+    border        : none;
+    border-bottom : 1px dotted lighten($color-main, 40%);
+  }
+  
+ }
