@@ -30,7 +30,7 @@ class App extends Component {
 
     let backendService = {
       local: 'http://localhost:3000',
-      heroku: 'https://reactjs-temperatura-backend.herokuapp.com'
+      heroku: 'https://reactjs-temperatura-backend.herokuapp.com:3000'
     };
 
     this.socket = socketIOClient(backendService.heroku, { forceNew: true });
