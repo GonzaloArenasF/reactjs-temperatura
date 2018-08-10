@@ -47,13 +47,13 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "dev:start": "node scripts/start.js",
-    "dev:build": "node scripts/build.js",
-    "dev:test": "node scripts/test.js --env=jsdom"
+    "prod:start": "react-scripts start",
+    "prod:build": "react-scripts build",
+    "prod:test": "react-scripts test --env=jsdom",
+    "prod:eject": "react-scripts eject",
+    "start": "node scripts/start.js",
+    "build": "node scripts/build.js",
+    "test": "node scripts/test.js --env=jsdom"
   },
   "devDependencies": {
     "node-sass": "^4.9.2",
